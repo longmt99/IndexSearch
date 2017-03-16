@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * Created by brad on 6/10/15.
  */
-class main {
+class Main {
 
     public static void main(String args[]) throws Exception {
 

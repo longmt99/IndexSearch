@@ -40,24 +40,24 @@ public class SearchIndexFactory {
 
         final DocumentParser parser = new DocumentParser(true, true);
         for (final List<Document> partition : Lists.partition(docsList, cores)) {
-           // Thread t = new Thread(new Runnable() {
-                //@Override
-                //public void run() {
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
                     parsedDocuments.addAll(buildParsedDocuments(partition, parser));
-               // }
-            //});
-           // threads.add(t);
-           // t.start();
+                }
+            });
+            threads.add(t);
+            t.start();
         }
 
-        /*for (Thread thread : threads) {
+        for (Thread thread : threads) {
             try {
                 thread.join();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         }
-        */
+        
         return parsedDocuments;
     }
 
